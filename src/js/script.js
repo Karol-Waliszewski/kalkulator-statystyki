@@ -6,14 +6,14 @@ document.getElementById("numbers").addEventListener("input", function() {
     .split(/(\s+)/)
     .filter(el => el.trim().length > 0)
     .map(el => Number(el))
-    .sort();
+    .sort((a, b) => a - b);
 
   // Calling statistics functions
-  console.log("=============")
+  //console.log("=============");
   mediana();
   arytmetyczna();
   dominanta();
-  console.log("=============");
+  //console.log("=============");
 });
 
 function mediana() {
@@ -26,7 +26,8 @@ function mediana() {
     var index = (dlugosc + 1) / 2 - 1;
     wynik = numbers[index];
   }
-  console.log(`Mediana to: ${wynik}`);
+  document.getElementById("mediana").innerText = wynik;
+  //console.log(`Mediana to: ${wynik}`);
 }
 
 function arytmetyczna() {
@@ -35,19 +36,22 @@ function arytmetyczna() {
     suma += num;
   }
   var wynik = Math.round(suma / numbers.length + "e+2") / 100;
-  console.log(`Srednia arytmetyczna to: ${wynik}`);
+  document.getElementById("arytmetyczna").innerText = wynik;
+  //console.log(`Srednia arytmetyczna to: ${wynik}`);
 }
 
 function dominanta() {
   var nums = {};
-  var max = null;
+  var max = 0;
   var wynik = [];
 
   for (let num of numbers) {
     nums[num] = nums[num] + 1 || 1;
   }
   for (let num in nums) {
-    if (max < nums[num]) {
+    if (typeof nums[max] == "undefined") {
+      max = num;
+    } else if (nums[max] < nums[num]) {
       max = num;
     }
   }
@@ -57,6 +61,9 @@ function dominanta() {
       wynik.push(num);
     }
   }
+  console.log(nums);
+  console.log(max);
 
-  console.log(`Dominanta to: ${wynik}`);
+  document.getElementById("dominanta").innerText = wynik;
+  //console.log(`Dominanta to: ${wynik}`);
 }

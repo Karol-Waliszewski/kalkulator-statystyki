@@ -8,14 +8,16 @@ document.getElementById("numbers").addEventListener("input", function () {
     return el.trim().length > 0;
   }).map(function (el) {
     return Number(el);
-  }).sort();
+  }).sort(function (a, b) {
+    return a - b;
+  });
 
   // Calling statistics functions
-  console.log("=============");
+  //console.log("=============");
   mediana();
   arytmetyczna();
   dominanta();
-  console.log("=============");
+  //console.log("=============");
 });
 
 function mediana() {
@@ -28,7 +30,8 @@ function mediana() {
     var index = (dlugosc + 1) / 2 - 1;
     wynik = numbers[index];
   }
-  console.log("Mediana to: " + wynik);
+  document.getElementById("mediana").innerText = wynik;
+  //console.log(`Mediana to: ${wynik}`);
 }
 
 function arytmetyczna() {
@@ -59,12 +62,13 @@ function arytmetyczna() {
   }
 
   var wynik = Math.round(suma / numbers.length + "e+2") / 100;
-  console.log("Srednia arytmetyczna to: " + wynik);
+  document.getElementById("arytmetyczna").innerText = wynik;
+  //console.log(`Srednia arytmetyczna to: ${wynik}`);
 }
 
 function dominanta() {
   var nums = {};
-  var max = null;
+  var max = 0;
   var wynik = [];
 
   var _iteratorNormalCompletion2 = true;
@@ -93,7 +97,9 @@ function dominanta() {
   }
 
   for (var _num in nums) {
-    if (max < nums[_num]) {
+    if (typeof nums[max] == "undefined") {
+      max = _num;
+    } else if (nums[max] < nums[_num]) {
       max = _num;
     }
   }
@@ -103,7 +109,10 @@ function dominanta() {
       wynik.push(_num2);
     }
   }
+  console.log(nums);
+  console.log(max);
 
-  console.log("Dominanta to: " + wynik);
+  document.getElementById("dominanta").innerText = wynik;
+  //console.log(`Dominanta to: ${wynik}`);
 }
 //# sourceMappingURL=maps/script.js.map
