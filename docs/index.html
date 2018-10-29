@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>IIIa - Statystyka</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.css">
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+
+<body>
+
+  <section class="hero is-info is-medium is-bold">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <h1 class="title">Szybki kalkulator do statystyki dla klasy IIIa</h1>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="container">
+      <div class="column is-8 is-offset-2">
+        <div class="card ">
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content has-text-centered">
+                <p class="title">Jak to działa?</p>
+              </div>
+            </div>
+            <div class="content">
+              <p> Wystarczy wpisać liczby które są oddzielone odstępami o dowolnych wielkościach</p>
+              <pre>25 3 90 271 8 64</pre>
+              <p> Wpisanie znaku innego niż liczba spowoduje błąd.</p>
+              </p> Kalkulator sam obliczy jakie są wartości <b>mediany</b>, <b>średniej arytmetycznej</b> oraz <b>dominanty</b>.</p>
+              <div class="field">
+                <label for="numbers" class="label">Zacznij od wpisania tutaj liczb:</label>
+                <div class="control">
+                  <textarea name="numbers" id="numbers" class="textarea"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="content">
+              <p>Mediana: <span id="mediana"></span></p>
+              <p>Średnia arytmetyczna: <span id="arytmetyczna"></span></p>
+              <p>Dominanta: <span id="dominanta"></span></p>
+            </div>
+          </div>
+        </div>
+    </section>
+  </main>
+  <footer class="footer">Wykonanie: Karol Waliszewski</footer>
+  <script src="/js/script.js"></script>
+</body>
+
+</html>
