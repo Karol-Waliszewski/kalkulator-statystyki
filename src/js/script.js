@@ -9,11 +9,9 @@ document.getElementById("numbers").addEventListener("input", function() {
     .sort((a, b) => a - b);
 
   // Calling statistics functions
-  //console.log("=============");
   mediana();
   arytmetyczna();
   dominanta();
-  //console.log("=============");
 });
 
 function mediana() {
@@ -27,7 +25,6 @@ function mediana() {
     wynik = numbers[index];
   }
   document.getElementById("mediana").innerText = wynik;
-  //console.log(`Mediana to: ${wynik}`);
 }
 
 function arytmetyczna() {
@@ -37,7 +34,6 @@ function arytmetyczna() {
   }
   var wynik = Math.round(suma / numbers.length + "e+2") / 100;
   document.getElementById("arytmetyczna").innerText = wynik;
-  //console.log(`Srednia arytmetyczna to: ${wynik}`);
 }
 
 function dominanta() {
@@ -64,6 +60,24 @@ function dominanta() {
   console.log(nums);
   console.log(max);
 
-  document.getElementById("dominanta").innerText = wynik;
-  //console.log(`Dominanta to: ${wynik}`);
+  if (isEveryTheSame(nums)) {
+    document.getElementById("dominanta").innerText =
+      "Brak (Wszystkie wyrazy występują jednakowo często)";
+  } else {
+    document.getElementById("dominanta").innerText = wynik;
+  }
+}
+
+function isEveryTheSame(obj) {
+  var arr = [];
+
+  for (let i in obj) {
+    arr.push(obj[i]);
+  }
+
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] != arr[i + 1]) return false;
+  }
+
+  return true;
 }
