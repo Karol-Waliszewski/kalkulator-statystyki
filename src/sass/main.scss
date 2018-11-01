@@ -4,8 +4,15 @@
   padding: 0;
 }
 
-
 .footer {
   background: none;
   padding: 2rem 1.5rem;
+  @media screen and (max-width: 600px) {
+    padding: {
+      left: 0.75rem;
+      right: 0.75rem;
+      bottom: 1.25rem;
+      top: 1.5rem;
+    }
+  }
 }

@@ -13,9 +13,11 @@ document.getElementById("numbers").addEventListener("input", function () {
   });
 
   // Calling statistics functions
-  mediana();
-  arytmetyczna();
-  dominanta();
+  document.getElementById("arytmetyczna").innerText = arytmetyczna();
+  document.getElementById("mediana").innerText = mediana();
+  document.getElementById("dominanta").innerText = dominanta();
+  document.getElementById("wariancja").innerText = wariancja();
+  document.getElementById("odchylenie").innerText = odchylenie();
 });
 
 function mediana() {
@@ -28,7 +30,7 @@ function mediana() {
     var index = (dlugosc + 1) / 2 - 1;
     wynik = numbers[index];
   }
-  document.getElementById("mediana").innerText = wynik;
+  return wynik;
 }
 
 function arytmetyczna() {
@@ -58,8 +60,8 @@ function arytmetyczna() {
     }
   }
 
-  var wynik = Math.round(suma / numbers.length + "e+2") / 100;
-  document.getElementById("arytmetyczna").innerText = wynik;
+  var wynik = Math.round(suma / numbers.length + "e+3") / 1000;
+  return wynik;
 }
 
 function dominanta() {
@@ -105,14 +107,48 @@ function dominanta() {
       wynik.push(_num2);
     }
   }
-  console.log(nums);
-  console.log(max);
 
   if (isEveryTheSame(nums)) {
-    document.getElementById("dominanta").innerText = "Brak (Wszystkie wyrazy występują jednakowo często)";
+    return "Brak (Wszystkie wyrazy występują jednakowo często)";
   } else {
-    document.getElementById("dominanta").innerText = wynik;
+    return wynik;
   }
+}
+
+function wariancja() {
+  var sum = 0;
+  var _iteratorNormalCompletion3 = true;
+  var _didIteratorError3 = false;
+  var _iteratorError3 = undefined;
+
+  try {
+    for (var _iterator3 = numbers[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+      var num = _step3.value;
+
+      sum += num * num;
+    }
+  } catch (err) {
+    _didIteratorError3 = true;
+    _iteratorError3 = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion3 && _iterator3.return) {
+        _iterator3.return();
+      }
+    } finally {
+      if (_didIteratorError3) {
+        throw _iteratorError3;
+      }
+    }
+  }
+
+  var wynik = sum / numbers.length - arytmetyczna() * arytmetyczna();
+  wynik = Math.round(wynik * 1000) / 1000;
+  return wynik;
+}
+
+function odchylenie() {
+  return Math.round(Math.sqrt(wariancja()) * 1000) / 1000;
 }
 
 function isEveryTheSame(obj) {
